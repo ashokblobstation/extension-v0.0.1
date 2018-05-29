@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+	<script src="background.js"></script>       
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+  html,body {
+      height: 100%;
+      color: white;
+    }
+    body {
+    background-size: 100%;
+   	overflow: hidden;
+   	
+   
+  }
+  .options{
+  	top: 60px;
+  	right: 20px;
+  	width: 20px;
+  	cursor: pointer;
+  	height: 20px;
+  	display: inline-block;
+  	position: absolute;
+  	background-size: contain;
+
+  	background-repeat: no-repeat;
+  	filter: invert(0%)
+  }
+  .widget{
+  	font-size: 35px; /*//margin-top: 0px; font-weight: 100; line-height: 0.8em; margin-bottom: 0px; vertical-align: top;*/
+  	top: 50px;
+  	right: 160px;
+  	width: 270px;
+  	padding: 20px;
+  	flex-flow: column;
+  	position: absolute;
+  	font-family: HelveticaNeue, sans-serif;
+  }
+  .mainsetting{
+  	top: 90px;
+  	right: 60px;
+  	width: 270px;
+  	border: none;
+  	border-radius: 8px;
+  	display:none;
+  	z-index:10000;
+  	padding: 20px;
+  	flex-flow: column;
+  	position: absolute;
+  	box-shadow: rgba(0, 0, 0, 0.61) 0px 0px 20px;
+  	font-family: HelveticaNeue, sans-serif;
+  	background-color: rgb(255, 255, 255);
+  	color: black;
+  }
+
+  .switch {
+  	position: relative;
+  	display: inline-block;
+  	width: 40px;
+  	height: 15px;
+  }
+
+  .switch input {display:none;}
+
+  .slider {
+  	position: absolute;
+  	cursor: pointer;
+  	top: 0;
+  	left: 0;
+  	right: 0;
+  	bottom: 0;
+  	background-color: #ccc;
+  	-webkit-transition: .4s;
+  	transition: .4s;
+  }
+
+  .slider:before {
+  	position: absolute;
+  	content: "";
+  	height: 13px;
+  	width: 13px;
+  	background-color: white;
+  	-webkit-transition: .4s;
+  	transition: .4s;
+  }
+
+  input:checked + .slider {
+  	background-color: #2196F3;
+  }
+
+  input:focus + .slider {
+  	box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+  	-webkit-transform: translateX(26px);
+  	-ms-transform: translateX(26px);
+  	transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+  	border-radius: 15px;
+  }
+
+  .slider.round:before {
+  	border-radius: 50%;
+  }
+  .clickshowbgcolor{
+  	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
+  }
+   .clickshowbgimage{
+  	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
+  }
+  .showbgcolor{
+  	top: 40px;
+  	right: 60px;
+  	width: 200px;
+  	border: none;
+  	border-radius: 8px;
+  	display:none;
+  	z-index:10000;
+  	padding: 20px;
+  	flex-flow: column;
+  	position: absolute;
+  	box-shadow: rgba(0, 0, 0, 0.61) 0px 0px 20px;
+  	font-family: HelveticaNeue, sans-serif;
+  	background-color: rgb(0, 0, 0);
+  }
+  .showbgimage{
+  top: 150px;
+  	right: 60px;
+  	width: 200px;
+  	border: none;
+  	border-radius: 8px;
+  	display:none;
+  	z-index:10000;
+  	padding: 20px;
+  	flex-flow: column;
+  	position: absolute;
+  	box-shadow: rgba(0, 0, 0, 0.61) 0px 0px 20px;
+  	font-family: HelveticaNeue, sans-serif;
+  	background-color: rgb(0, 0, 0);	
+  }
+  .showbgcolor1{
+  	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
+  }
+  .showbgimage1{
+  	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+	<div class="widget">
+		<div class="container-fluid">
+			<div class="row" id="showtime">
+				<div class="col-sm-8" id="time"></div>
+				<div class="col-sm-4" id="ampm"></div>
+			</div>
+			<div class="row" id="showdate">
+				<div class="col-sm-8" id="day"></div>
+				<div class="col-sm-4" id="date"></div>
+			</div>
+			<div class="row" id="showweather">
+				<div class="col-sm-8" id="weather"></div>
+				<div class="col-sm-4" id="weatherimage"></div>
+			</div>
+			
+		</div>
+		
+	</div>
+	<div class="options">
+
+		<i class="fa fa-bars"></i>
+
+	</div>
+	<div class="mainsetting">
+		<div class="container-fluid form-group" >
+			<div class="row">
+				<div class="col-sm-8">Clock</div>
+				<div class="col-sm-4">
+					<label class="switch">
+						<input type="checkbox" id="clockstatus">
+						<span class="slider round"></span>
+					</label>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-8">Temp</div>
+				<div class="col-sm-4">
+					<label class="switch">
+						<input type="checkbox" id="tempstatus">
+						<span class="slider round"></span>
+					</label>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-9">Background color</div>
+				<div class="col-sm-3">
+					<div id="clickshowbgcolor" class="clickshowbgcolor" style="background-color: rgb(0, 0, 0);">
+					</div>
+					<div class="showbgcolor">
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(0, 153, 243);">
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(0, 168, 170);">    
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(48, 48, 48);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(40, 169, 0);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(44, 135, 255);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(62, 0, 225);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(91, 164, 0);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(119, 119, 119);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(145, 0, 255);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(255, 108, 0);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(255, 0, 105);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(255, 22, 0);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(255, 172, 0);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(233, 27, 0);">
+
+						</div>
+						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(255, 255, 255);">
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-9">Background Image</div>
+				<div class="col-sm-3">
+					<img src="assets/images/bgimages/bluesky-bg.jpg" id="clickshowbgimage" class="clickshowbgimage">
+				</div>
+				<div class="showbgimage">
+					<img src="assets/images/bgimages/bluesky-bg.jpg" id="showbgimage1" class="showbgimage1">
+
+					<img src="assets/images/bgimages/cupcake-bg.jpg" id="showbgimage1" class="showbgimage1">
+
+					<img src="assets/images/bgimages/desk-bg.jpg" id="showbgimage1" class="showbgimage1">
+
+					<img src="assets/images/bgimages/films-bg.jpg" id="showbgimage1" class="showbgimage1">
+
+					<img src="assets/images/bgimages/hero-bg.jpg" id="showbgimage1" class="showbgimage1">
+
+					<img src="assets/images/bgimages/mountain-bg.jpg" id="showbgimage1" class="showbgimage1">
+
+					<img src="assets/images/bgimages/sea-bg.jpg" id="showbgimage1" class="showbgimage1">
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-8">Search Engine</div>
+				<div class="col-sm-4">
+					<select>
+						<option>Yahoo</option>
+						<option>Bing</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-9"><button id="closesetting" type="button" class="btn btn-primary">Close Setting</button></div>
+
+			</div>
+			<div class="clearfix">
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
