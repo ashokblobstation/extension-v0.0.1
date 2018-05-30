@@ -13,8 +13,8 @@ $(document).click(function(e){
 			var weekday = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
     		var n = weekday[currentTime.getDay()];
     		var date=currentTime.getDate()+'/'+currentTime.getMonth()+'/'+currentTime.getFullYear();
-			var ampm='AM';
-			ampm=(currentHours>12)?'PM':ampm;
+			var ampm='<span>AM</span>';
+			ampm=(currentHours>12)?'<span>PM</span>':ampm;
 			currentHours = ( currentHours>12 ) ? currentHours - 12 : currentHours;
 			currentHours = ( currentHours == 0 ) ? 12 : currentHours;
 			if (currentHours<10) {
@@ -26,9 +26,8 @@ $(document).click(function(e){
 			if (currentSeconds<10) {
 				currentSeconds='0'+currentSeconds;
 			}  	
-			var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+			var currentTimeString = currentHours + ":" + currentMinutes + "&nbsp;"+ampm;
 			$("#time").html(currentTimeString);
-			$("#ampm").html(ampm);
 			$("#day").html(n);
 			$("#date").html(date);
 
@@ -59,7 +58,7 @@ $(document).click(function(e){
 					localStorage.setItem('temperature',temp);    
 					var obj=JSON.parse(localStorage.getItem('temperature'));
 					var img='<img src="assets/images/weatherimages/'+obj.weather[0].icon+'.png">'
-					var temperature=obj.main.temp+' <sup>o</sup>C ';
+					var temperature=obj.main.temp+' <sup>o</sup>c ';
 					$("#weather").html(temperature);
 					$("#weatherimage").html(img);
 				}});
@@ -67,7 +66,8 @@ $(document).click(function(e){
 		}
 		$(document).ready(function(){
   	document.body.style.backgroundImage = "url('assets/images/bgimages/cupcake-bg.jpg')";
-  	setInterval('updateClock()', 1000);
+  	updateClock();
+  	//setInterval('updateClock()', 1000);
   	 //display weather
   	 getLocation();
 
@@ -105,4 +105,24 @@ $(document).click(function(e){
   	  $('#tempstatus').click(function() {
   	  		(this.checked)?$("#showweather").show():$("#showweather").hide()
   	  });
+
+  	  $('#searchform').submit(function(){
+  	  	var searchengine=localStorage.getItem('searchengine');
+  	  	var action='https://www.bing.com/search?q='
+  	  	if(searchengine!=='bing'){
+  	  		action='https://in.search.yahoo.com/search?p='
+  	  	}
+  	  	else
+  	  	{
+  	  	var action='https://www.bing.com/search?q='
+  	  		
+  	  	}
+  	  	var searchtext = $("input[name='searchtext']",this).val();
+  	  	action = action+searchtext;
+  	  	$("#searchform").attr('action',action);
+  	  });
+  	  $('#searchengine').change(function() {
+  	  	var searchengine = $("#searchengine option:selected").val();
+  	  	localStorage.setItem('searchengine',searchengine);
+  	  })
   	});

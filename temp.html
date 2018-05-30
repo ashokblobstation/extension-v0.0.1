@@ -7,17 +7,19 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
 	<script src="background.js"></script>       
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/bundle.v0.0.1.min.css">
+
 
   <style>
   html,body {
-      height: 100%;
-      color: white;
-    }
-    body {
+    height: 100%;
+    color: white;
+  }
+  body {
     background-size: 100%;
-   	overflow: hidden;
-   	
-   
+    overflow: hidden;
+
+
   }
   .options{
   	top: 60px;
@@ -33,19 +35,44 @@
   	filter: invert(0%)
   }
   .widget{
-  	font-size: 35px; /*//margin-top: 0px; font-weight: 100; line-height: 0.8em; margin-bottom: 0px; vertical-align: top;*/
+    /*margin: 0px 0px 3px; 
+   */ font-size: 28px;
+   /*//margin-top: 0px; font-weight: 100; line-height: 0.8em; margin-bottom: 0px; vertical-align: top;*/
   	top: 50px;
-  	right: 160px;
-  	width: 270px;
-  	padding: 20px;
+  	right: 5px;
+  	width: 500px;
+  	
   	flex-flow: column;
   	position: absolute;
   	font-family: HelveticaNeue, sans-serif;
   }
+  .widget .time
+  {
+    font-size: 50px; 
+    margin-top: 0px; 
+    font-weight: 100; 
+    line-height: 0.4em; 
+    margin-bottom: 0px; 
+    vertical-align: top;
+    font-family: neue, sans-serif;
+  }
+  .widget .day{
+    font-size: 15px;
+    font-family: neue, sans-serif; 
+  }
+  .widget .weather{
+    font-size: 50px; 
+    margin-top: 0px; 
+    font-weight: 100; 
+    
+    margin-bottom: 0px; 
+    vertical-align: top;
+    font-family: neue, sans-serif;
+  }
   .mainsetting{
   	top: 90px;
   	right: 60px;
-  	width: 270px;
+  	width: 330px;
   	border: none;
   	border-radius: 8px;
   	display:none;
@@ -115,7 +142,7 @@
   .clickshowbgcolor{
   	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
   }
-   .clickshowbgimage{
+  .clickshowbgimage{
   	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
   }
   .showbgcolor{
@@ -134,19 +161,19 @@
   	background-color: rgb(0, 0, 0);
   }
   .showbgimage{
-  top: 150px;
-  	right: 60px;
-  	width: 200px;
-  	border: none;
-  	border-radius: 8px;
-  	display:none;
-  	z-index:10000;
-  	padding: 20px;
-  	flex-flow: column;
-  	position: absolute;
-  	box-shadow: rgba(0, 0, 0, 0.61) 0px 0px 20px;
-  	font-family: HelveticaNeue, sans-serif;
-  	background-color: rgb(0, 0, 0);	
+    top: 150px;
+    right: 60px;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    display:none;
+    z-index:10000;
+    padding: 20px;
+    flex-flow: column;
+    position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.61) 0px 0px 20px;
+    font-family: HelveticaNeue, sans-serif;
+    background-color: rgb(0, 0, 0);	
   }
   .showbgcolor1{
   	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
@@ -154,20 +181,37 @@
   .showbgimage1{
   	width: 20px; border: 1px solid gray; cursor: pointer; height: 20px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 50%;
   }
+  .searchsubmit
+  {
+    color: rgb(102, 102, 102); width: 50px; border: none; cursor: pointer; outline: none; padding: 0px 10px; font-size: 14px; box-shadow: none; margin-top: 0px; background: url('assets/images/icons/48.png') 9px 6px / 70% no-repeat rgb(40, 123, 204); font-family: neue; line-height: 30px; text-indent: 0px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;
+  }
 </style>
 </head>
 <body>
 	<div class="widget">
 		<div class="container-fluid">
-			<div class="row" id="showtime">
-				<div class="col-sm-8" id="time"></div>
-				<div class="col-sm-4" id="ampm"></div>
+			<div class="row time" id="showtime">
+				<div class="col-sm-6" id="time"></div>
+				<div class="col-sm-6">
+          <div class="day" id="showdate">
+            <div class="row">
+              <div class="col-sm-12" id="day"></div>
+              <div class="col-sm-12" id="date"></div>
+          </div>            
+         </div>
+      </div>
 			</div>
-			<div class="row" id="showdate">
-				<div class="col-sm-8" id="day"></div>
-				<div class="col-sm-4" id="date"></div>
-			</div>
-			<div class="row" id="showweather">
+      <div class="row weather" id="showweather">
+        <div class="col-sm-6" id="weather"></div>
+        <div class="col-sm-6">
+          <div class="day" id="weatherimage">
+            <div class=""><p class="" id="day"></div>
+            <div class="" id="date"></div>
+          </div>            
+         </div>
+      </div>
+      </div>
+			<div class="row weather" id="showweather">
 				<div class="col-sm-8" id="weather"></div>
 				<div class="col-sm-4" id="weatherimage"></div>
 			</div>
@@ -279,9 +323,9 @@
 			<div class="row">
 				<div class="col-sm-8">Search Engine</div>
 				<div class="col-sm-4">
-					<select>
-						<option>Yahoo</option>
-						<option>Bing</option>
+					<select id="searchengine">
+						<option value="yahoo">Yahoo</option>
+						<option value="bing">Bing</option>
 					</select>
 				</div>
 			</div>
@@ -295,5 +339,66 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+   <div>
+    <form id="searchform" method="post">
+    <div class="_sfd7x3" style="top: 35%; left: 50%; border: none; z-index: 10; display: flex; flex-flow: column; position: absolute; transform: translate(-50%); align-items: center;">
+      <div class="_sfd7x3" style="display: flex;">
+        <div class="_sfd7x3" style="display: flex; flex-flow: column;">
+          <div class="_sfd7x3" style="color: black; width: 500px; border: none; height: 45px; display: flex; outline: none; font-size: 16px; box-shadow: rgb(173, 173, 173) 1px 1px 1px; box-sizing: border-box;">
+            <input type="text" autocomplete="off" name="searchtext" dir="auto" placeholder="Search the web" value="" style="color: black; border: none; outline: none; padding: 10px; flex-grow: 2; font-size: 16px; border-radius: 3px 0px 0px 3px;" autofocus="">
+            <input type="submit" class="searchsubmit" name="searchsubmit" dir="ltr" value="">
+          </div>
+          <div style="display: none;">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+    </div>
+<!--
+    <div>
+      <div class="_sfd7x3" style="color: white;">
+        <span>
+          <div class="_sfd7x3 fadeout-enter fadeout-enter-active" style="top: 60px; right: 275px; width: 25px; cursor: pointer; height: 25px; position: absolute; margin-right: 6px; background-size: contain; background-image: url(&quot;content/images/clock.png&quot;); background-repeat: no-repeat;">
+            
+          </div>
+        </span>
+        <span>
+          <div class="_1bjry6r" style="top: 60px; right: 50px; width: 220px; display: inline-block; position: absolute; vertical-align: top;"><div class="_1bjry6r" style="font-size: 50px; margin-top: 0px; font-weight: 100; line-height: 0.8em; margin-bottom: 0px; vertical-align: top;">15:01</div>
+          <div class="_1bjry6r" style="text-align: left; margin-left: 5px; vertical-align: top;"><p style="margin: 0px 0px 3px; font-size: 15px;">Wednesday</p><p style="margin: 0px 0px 3px; font-size: 15px;">30.5.2018</p>
+          </div>
+        </div>
+        <div class="_1bjry6r fadeout-appear fadeout-enter fadeout-appear-active fadeout-enter-active" style="top: 60px; right: 50px; width: 220px; display: inline-block; position: absolute; vertical-align: top;">
+          <div class="_1bjry6r" style="font-size: 50px; margin-top: 0px; font-weight: 100; line-height: 0.8em; margin-bottom: 0px; vertical-align: top;">15:01
+          </div>
+          <div class="_1bjry6r" style="text-align: left; margin-left: 5px; vertical-align: top;"><p style="margin: 0px 0px 3px; font-size: 15px;">Wednesday</p><p style="margin: 0px 0px 3px; font-size: 15px;">30.5.2018</p>
+          </div>
+        </div>
+      </span>
+    </div>
+    </div>
+    <div>
+      <div class="_sfd7x3" style="color: white;">
+        <span>
+          <div class="_sfd7x3" style="top: 60px; right: 270px; width: 35px; cursor: pointer; height: 25px; position: absolute; margin-right: 6px; background-size: contain; background-image: url(&quot;content/images/cloud.png&quot;); background-repeat: no-repeat; filter: invert(0%);"></div>
+        </span>
+        <span>
+          <span class=""><div class="_1bjry6r" style="top: 60px; right: 50px; width: 220px; display: inline-block; position: absolute; vertical-align: top;">
+            <div class="_sfd7x3" style="float: left; font-size: 50px; margin-top: 0px; font-weight: 100; line-height: 0.8em; margin-bottom: 0px; vertical-align: top;">
+              <div class="_1bjry6r">34</div>
+              <div class="_1bjry6r" style="display: inline-block; font-size: 35px; font-style: normal; margin-top: -3px; vertical-align: top;">°
+              </div>
+              <div class="_sfd7x3" style="cursor: pointer; display: inline-block; font-size: 30px; margin-right: 15px;">C</div></div>
+              <div class="_1bjry6r" style="text-align: left;">
+                <div class="_sfd7x3" style="width: 100%; height: 29px; margin-top: -3px; margin-right: 0px; vertical-align: top; background-size: 40px; background-repeat: no-repeat; background-position: center center; background-image: url(&quot;content/images/weather/03d.svg&quot;);">
+                  
+                </div>
+                <div class="_1bjry6r" style="font-size: 12px;">Chinchpokli</div>
+              </div>
+            </div>
+          </span>
+      </span></div>
+    </div> -->
+  </body>
+  </html>
