@@ -185,9 +185,28 @@
   {
     color: rgb(102, 102, 102); width: 50px; border: none; cursor: pointer; outline: none; padding: 0px 10px; font-size: 14px; box-shadow: none; margin-top: 0px; background: url('assets/images/icons/48.png') 9px 6px / 70% no-repeat rgb(40, 123, 204); font-family: neue; line-height: 30px; text-indent: 0px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;
   }
+  .searchnav
+  {
+    color: white; cursor: pointer; display: inline-block; font-size: 14px; font-family: neue; font-weight: 100; margin-right: 30px; text-decoration: none;
+  }
+  .active{
+    font-size: 18px;
+    font-weight: bold;
+}
 </style>
 </head>
 <body>
+  <div style="top: 30px; width: 100%; position: absolute; text-align: left; padding-top: 30px; padding-left: 30px;">
+    <div id="searchnavdiv" class="searchnavdiv">
+      <p class="searchnav active" title="web">Web</p>
+      <p class="searchnav" title="images">Images</p>
+      <p class="searchnav" title="videos">Videos</p>
+      <div style="display: none;"></div>
+      <div style="display: none;"></div>
+      <div style="display: none;"></div>
+      <div style="display: none;"></div>
+    </div>
+  </div>
 	<div class="widget">
 		<div class="container-fluid">
 			<div class="row time" id="showtime">
@@ -202,20 +221,9 @@
       </div>
 			</div>
       <div class="row weather" id="showweather">
-        <div class="col-sm-6" id="weather"></div>
-        <div class="col-sm-6">
-          <div class="day" id="weatherimage">
-            <div class=""><p class="" id="day"></div>
-            <div class="" id="date"></div>
-          </div>            
-         </div>
+        <div class="col-sm-12" id=""><span id="weather"></span><span id="weatherimage"></span></div>
       </div>
       </div>
-			<div class="row weather" id="showweather">
-				<div class="col-sm-8" id="weather"></div>
-				<div class="col-sm-4" id="weatherimage"></div>
-			</div>
-			
 		</div>
 		
 	</div>
@@ -240,7 +248,7 @@
 				<div class="col-sm-8">Temp</div>
 				<div class="col-sm-4">
 					<label class="switch">
-						<input type="checkbox" id="tempstatus">
+						<input type="checkbox" id="weatherstatus">
 						<span class="slider round"></span>
 					</label>
 				</div>
@@ -249,7 +257,7 @@
 			<div class="row">
 				<div class="col-sm-9">Background color</div>
 				<div class="col-sm-3">
-					<div id="clickshowbgcolor" class="clickshowbgcolor" style="background-color: rgb(0, 0, 0);">
+					<div id="clickshowbgcolor" class="clickshowbgcolor" style="background-color: rgb(255,255,255);">
 					</div>
 					<div class="showbgcolor">
 						<div id="showbgcolor1" class="showbgcolor1" style="background-color: rgb(0, 153, 243);">
@@ -345,8 +353,8 @@
       <div class="_sfd7x3" style="display: flex;">
         <div class="_sfd7x3" style="display: flex; flex-flow: column;">
           <div class="_sfd7x3" style="color: black; width: 500px; border: none; height: 45px; display: flex; outline: none; font-size: 16px; box-shadow: rgb(173, 173, 173) 1px 1px 1px; box-sizing: border-box;">
-            <input type="text" autocomplete="off" name="searchtext" dir="auto" placeholder="Search the web" value="" style="color: black; border: none; outline: none; padding: 10px; flex-grow: 2; font-size: 16px; border-radius: 3px 0px 0px 3px;" autofocus="">
-            <input type="submit" class="searchsubmit" name="searchsubmit" dir="ltr" value="">
+            <input type="text" autocomplete="off" name="searchtext" class="searchtext" dir="auto" placeholder="Search the web" value="" style="color: black; border: none; outline: none; padding: 10px; flex-grow: 2; font-size: 16px; border-radius: 3px 0px 0px 3px;" autofocus="">
+            <input type="submit" class="searchsubmit" name="searchsubmit" dir="ltr" disabled='disabled' value="">
           </div>
           <div style="display: none;">
             
